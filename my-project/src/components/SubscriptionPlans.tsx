@@ -105,17 +105,17 @@ const SubscriptionPlans: React.FC = () => {
         </div>
 
         {/* 卡片布局保持不变 */}
-        <div className="grid grid-cols-3 gap-20">
-          <div className="flex justify-end">
-            <PlanCard {...plans[0]} />
+  <div className="grid grid-cols-3 gap-20 max-lg:gap-10 max-md:gap-5 max-sm:gap-2">
+            <div className="flex justify-end max-md:justify-center">
+              <PlanCard {...plans[0]} />
+            </div>
+            <div className="col-span-1"></div>
+            <div className="flex justify-start max-md:justify-center">
+              <PlanCard {...plans[2]} />
+            </div>
           </div>
-          <div className="col-span-1"></div>
-          <div className="flex justify-start">
-            <PlanCard {...plans[2]} />
-          </div>
-        </div>
         
-        <div className="flex justify-center mt-32">
+        <div className="flex justify-center mt-32 max-lg:mt-24 max-md:mt-20 max-sm:mt-16">
           <PlanCard {...plans[1]} />
         </div>
       </div>
