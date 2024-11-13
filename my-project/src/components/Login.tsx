@@ -19,7 +19,7 @@ const Login: React.FC<LoginProps> = ({ onClose, onSwitchToRegister }) => {
     try {
       await login(email, password);
       onClose();
-    } catch (err) {
+    } catch  {
       setError('登入失敗，請檢查您的郵箱和密碼');
     }
   };
