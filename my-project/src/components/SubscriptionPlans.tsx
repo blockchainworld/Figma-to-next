@@ -1,177 +1,155 @@
-"use client"
-import React, { useState, useEffect } from "react";
-import { useAuth } from '../context/AuthContext';
-import Login from './Login';
-import Register from './Register';
+import React from "react";
 
-const Header: React.FC = () => {
-  const { isAuthenticated, logout } = useAuth();
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [showLogin, setShowLogin] = useState(false);
-  const [showRegister, setShowRegister] = useState(false);
+interface PlanProps {
+  price: string;
+  duration: string;
+  icon: string;
+  position?: 'left' | 'right' | 'bottom';
+}
 
-  const toggleMenu = () => {
-    setIsMenuOpen(!isMenuOpen);
-  };
+const PlanCard: React.FC<PlanProps> = ({ price, duration, icon, position }) => (
+  <div className={`relative flex flex-col items-center justify-center px-10 py-8 w-[280px] h-[180px] 
+    max-lg:w-[240px] max-lg:h-[160px] max-md:w-[200px] max-md:h-[140px] max-sm:w-[180px] max-sm:h-[120px]
+    text-center text-white rounded-[20px] ${position === 'bottom' ? 'mt-32 max-lg:mt-24 max-md:mt-20 max-sm:mt-16' : ''}`}>
+    {/* 玻璃拟态效果 */}
+    <div className="absolute inset-0 rounded-[20px] bg-white/10 backdrop-blur-md" />
+    
+    {/* 发光效果 */}
+    <div className="absolute inset-0 rounded-[20px] shadow-[0_0_30px_rgba(139,92,246,0.3)]" />
+    
+    {/* 光晕点缀 */}
+    <div className="absolute -top-1 -right-1 w-2 h-2 bg-white/30 rounded-full" />
+    <div className="absolute -bottom-1 -left-1 w-2 h-2 bg-white/30 rounded-full" />
+    
+    {/* 图标 - 增大尺寸 */}
+    <div className="absolute -top-12 max-lg:-top-10 max-md:-top-8 max-sm:-top-6">
+      <img 
+        src={icon} 
+        className="w-16 h-16 max-lg:w-14 max-lg:h-14 max-md:w-12 max-md:h-12 max-sm:w-10 max-sm:h-10" 
+        alt="" 
+      />
+    </div>
 
-  const navItems = [
-    { label: "股票指数", href: "#stock" , isExternal: false},
-    { label: "智富匯基金", href: "#fund" , isExternal: false },
-    { label: "關於我們", href: "#about" , isExternal: false},
-    { label: "新聞", href: "#news" , isExternal: false},
-    { label: "訂閱計畫", href: "#subscription" , isExternal: false},
-    { label: "聊天机器人", href: "https://tradingwithai.org/zh" , isExternal: true},
+    {/* 内容 */}
+    <div className="relative mt-4 z-10">
+      <div className="text-4xl max-lg:text-3xl max-md:text-2xl max-sm:text-xl font-medium mb-4">{price}</div>
+      <div className="text-xl max-lg:text-lg max-md:text-base max-sm:text-sm text-white/80">{duration}</div>
+    </div>
+  </div>
+);
+
+const SubscriptionPlans: React.FC = () => {
+  const plans: PlanProps[] = [
+    { 
+      price: "1700HK$/年", 
+      duration: "365日",
+      icon: "/bulb.svg",
+      position: 'left'
+    },
+    { 
+      price: "155HK$/月", 
+      duration: "30日",
+      icon: "/rocket.svg",
+      position: 'bottom'
+    },
+    { 
+      price: "400HK$/季度", 
+      duration: "90日",
+      icon: "/helix.svg",
+      position: 'right'
+    }
   ];
 
-    // 处理导航点击
-    const handleNavClick = (item: typeof navItems[0]) => {
-      if (item.isExternal) {
-        if (!isAuthenticated && item.href === "https://tradingwithai.org/zh") {
-          setShowLogin(true);
-          return;
-        }
-        window.open(item.href, '_blank', 'noopener,noreferrer');
-      } else {
-        scrollToSection(item.href.replace('#', ''));
-      }
-      setIsMenuOpen(false);
-    };
-
-    const handleAuthButtonClick = () => {
-      if (isAuthenticated) {
-        logout();
-      } else {
-        setShowLogin(true);
-      }
-    };
-
-  // 添加滚动功能
-  const scrollToSection = (sectionId: string) => {
-    const element = document.getElementById(sectionId);
-    if (element) {
-      const headerHeight = 200;
-      const elementPosition = element.getBoundingClientRect().top;
-      const offsetPosition = elementPosition + window.pageYOffset - headerHeight;
-
-      window.scrollTo({
-        top: offsetPosition,
-        behavior: "smooth"
-      });
-      setIsMenuOpen(false);
-    }
-  };
-
   return (
-    <>
-    <header className="relative w-full h-[200px] max-lg:h-[180px] max-md:h-[160px] max-sm:h-[140px] flex items-center">
-      <div className="absolute inset-0 bg-gradient-to-r from-[#4D3589]/80 to-[#2D1857]/80 backdrop-blur-sm" />
-      <img
-        loading="lazy"
-        src="https://cdn.builder.io/api/v1/image/assets/TEMP/a21a34f0174c482f4f7f92ef9ef16893b567781091ccd100e595bffa6457c4c3?placeholderIfAbsent=true&apiKey=63de7e29674842c29a93babaf5f1d67a"
-        className="object-cover absolute inset-0 size-full"
-        alt=""
-      />
-      
-      <nav className="relative z-20 flex items-center justify-between px-24 max-lg:px-16 max-md:px-8 max-sm:px-4 max-w-[1920px] mx-auto w-full">
-        {/* Logo部分 - 减小间距 */}
-        <div className="flex items-center space-x-6 max-lg:space-x-4 max-md:space-x-3 max-sm:space-x-2">
-          <img
-            src="https://cdn.builder.io/api/v1/image/assets/TEMP/b38e3ceb27690f322aa27ad97df099921b87d6c866018ab7ad75ae78e81e3613?placeholderIfAbsent=true&apiKey=63de7e29674842c29a93babaf5f1d67a"
-            alt="智富匯"
-            className="h-20 max-lg:h-16 max-md:h-14 max-sm:h-12 w-auto"
-          />
-          <span className="text-4xl max-lg:text-3xl max-md:text-2xl max-sm:text-xl font-bold text-white">
-            智富匯
-          </span>
+    <section id="subscription">
+    <div className="flex flex-col items-center w-full max-w-[1200px] mx-auto mt-32 px-4">
+      <h2 className="text-6xl max-lg:text-5xl max-md:text-4xl max-sm:text-3xl font-medium text-white mb-32">
+        訂閱計畫
+      </h2>
+
+      {/* 整体连接线布局容器 */}
+      <div className="relative w-full">
+       {/* 调整中心图标位置和间距 */}
+        <div className="relative flex justify-center mb-24 max-lg:mb-20 max-md:mb-16 max-sm:mb-12">
+            <div className="relative">
+              <img 
+                src="/layer.svg"
+                className="w-20 h-20 max-lg:w-16 max-lg:h-16 max-md:w-14 max-md:h-14 max-sm:w-12 max-sm:h-12"
+                alt=""
+              />
+            </div>
         </div>
 
-{/* 桌面端导航链接 - 添加 2xl 断点并优化间距 */}
-<div className="hidden xl:flex items-center space-x-24 2xl:space-x-24 xl:space-x-16 max-xl:space-x-12">
-  {navItems.map((item, index) => (
-    <a
-      key={index}
-      onClick={() => handleNavClick(item)}
-      className="text-white/90 hover:text-white transition-colors duration-200 
-        text-2xl 2xl:text-2xl xl:text-xl max-xl:text-lg 
-        font-medium cursor-pointer whitespace-nowrap"
-    >
-      {item.label}
-    </a>
-  ))}
-</div>
+        {/* 调整连接线布局 */}
+        <div className="absolute top-16 max-lg:top-14 max-md:top-12 max-sm:top-10 left-0 w-full h-full">
+            {/* 左侧弧形连接线 - 调整响应式位置和尺寸 */}
+            <div className="absolute left-[14%] top-4 w-[36%] h-[100px]
+              max-lg:left-[14%] max-lg:w-[36%] max-lg:h-[80px]
+              max-md:left-[15%] max-md:w-[36%] max-md:h-[60px]
+              max-sm:left-[16%] max-sm:w-[35%] max-sm:h-[40px]
+              border-t-2 border-l-2 rounded-tl-[50px] 
+              max-lg:rounded-tl-[40px] 
+              max-md:rounded-tl-[30px]
+              max-sm:rounded-tl-[20px]
+              border-white/30" />
 
-{/* 汉堡菜单按钮 - 修改显示断点 */}
-<button 
-  onClick={toggleMenu}
-  className="xl:hidden flex-col justify-center items-center w-10 h-10 rounded-lg hover:bg-white/10 transition-colors duration-200"
-  aria-label="Toggle menu"
->
-      <div className={`w-6 h-0.5 bg-white transition-all duration-300 ${isMenuOpen ? 'rotate-45 translate-y-1.5' : ''}`} />
-      <div className={`w-6 h-0.5 bg-white mt-1.5 transition-all duration-300 ${isMenuOpen ? 'opacity-0' : ''}`} />
-      <div className={`w-6 h-0.5 bg-white mt-1.5 transition-all duration-300 ${isMenuOpen ? '-rotate-45 -translate-y-1.5' : ''}`} />
-</button>
+            {/* 右侧弧形连接线 - 调整响应式位置和尺寸 */}
+            <div className="absolute right-[14%] top-4 w-[36%] h-[100px]
+              max-lg:right-[14%] max-lg:w-[36%] max-lg:h-[80px]
+              max-md:right-[15%] max-md:w-[36%] max-md:h-[60px]
+              max-sm:right-[16%] max-sm:w-[35%] max-sm:h-[40px]
+              border-t-2 border-r-2 rounded-tr-[50px]
+              max-lg:rounded-tr-[40px]
+              max-md:rounded-tr-[30px]
+              max-sm:rounded-tr-[20px]
+              border-white/30" />
 
-{/* 登录/注册按钮 - 优化间距 */}
-<button 
-  onClick={handleAuthButtonClick}
-  className="px-12 2xl:px-12 xl:px-10 max-xl:px-8 max-lg:px-6 max-md:px-4
-    py-4 2xl:py-4 xl:py-3.5 max-xl:py-3 max-lg:py-2.5
-    text-2xl 2xl:text-2xl xl:text-xl max-xl:text-lg max-lg:text-base
-    text-white/90 hover:text-white transition-colors duration-200 font-medium 
-    bg-white/10 rounded-full backdrop-blur-md hover:bg-white/20 whitespace-nowrap"
->
-  {isAuthenticated ? '退出登錄' : '登錄/註冊'}
-</button>
-      </nav>
-      {/* 底部渐变分隔线 */}
-      <div className="absolute bottom-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-white/30 to-transparent" />
+            {/* 中间垂直连接线 - 调整高度 */}
+            <div className="absolute left-1/2 -translate-x-1/2 top-4 w-[2px] 
+              h-[500px] 
+              max-lg:h-[500px] 
+              max-md:h-[400px]
+              max-sm:h-[400px]
+              bg-gradient-to-b from-white via-white/50 to-white/30
+              shadow-[0_0_10px_rgba(255,255,255,0.3)]" />
 
-        {/* 移动端导航菜单 - 修改显示断点 */}
-        {isMenuOpen && (
-  <div className="xl:hidden fixed top-[160px] max-sm:top-[140px] left-0 w-full bg-gradient-to-r from-[#4D3589]/95 to-[#2D1857]/95 backdrop-blur-md z-10">
-          <div className="flex flex-col py-4">
-            {navItems.map((item, index) => (
-              <a
-                key={index}
-                onClick={() => handleNavClick(item)}
-                className="px-8 py-4 text-lg text-white/90 hover:text-white hover:bg-white/10 transition-all duration-200 border-b border-white/10 last:border-b-0 cursor-pointer"
-              >
-                {item.label}
-              </a>
-            ))}
+            {/* 装饰性光点 - 调整响应式位置 */}
+            <div className="absolute left-[20%] top-[102px] 
+              max-lg:top-[82px] max-lg:left-[18%]
+              max-md:top-[62px] max-md:left-[16%]
+              max-sm:top-[42px] max-sm:left-[14%]
+              w-2 h-2 bg-white rounded-full 
+              shadow-[0_0_10px_rgba(255,255,255,0.8)]" />
+            
+            <div className="absolute right-[20%] top-[102px]
+              max-lg:top-[82px] max-lg:right-[18%]
+              max-md:top-[62px] max-md:right-[16%]
+              max-sm:top-[42px] max-sm:right-[14%]
+              w-2 h-2 bg-white rounded-full 
+              shadow-[0_0_10px_rgba(255,255,255,0.8)]" />
+            
+            <div className="absolute left-1/2 -translate-x-1/2 bottom-0 w-2 h-2 bg-white rounded-full 
+              shadow-[0_0_10px_rgba(255,255,255,0.8)]" />
           </div>
-        </div>
-      )}
 
-      {/* 遮罩层 - 修改显示断点 */}
-      {isMenuOpen && (
-        <div
-          className="xl:hidden fixed inset-0 bg-black/50 z-0"
-          onClick={() => setIsMenuOpen(false)}
-        />
-      )}
-    </header>
-    
-    {showLogin && (
-      <Login
-        onClose={() => setShowLogin(false)}
-        onSwitchToRegister={() => {
-          setShowLogin(false);
-          setShowRegister(true);
-        }}
-      />
-    )}
-    {showRegister && (
-      <Register
-        onClose={() => setShowRegister(false)}
-        onSwitchToLogin={() => {
-          setShowRegister(false);
-          setShowLogin(true);
-        }}
-      />
-    )}
-    </>
+          {/* 调整卡片网格布局 */}
+          <div className="grid grid-cols-3 gap-20 max-lg:gap-10 max-md:gap-5 max-sm:gap-2">
+            <div className="flex justify-end max-md:justify-center">
+              <PlanCard {...plans[0]} />
+            </div>
+            <div className="col-span-1"></div>
+            <div className="flex justify-start max-md:justify-center">
+              <PlanCard {...plans[2]} />
+            </div>
+          </div>
+
+        <div className="flex justify-center mt-32">
+          <PlanCard {...plans[1]} />
+        </div>
+      </div>
+    </div>
+    </section>
   );
 };
 
-export default Header;
+export default SubscriptionPlans;
