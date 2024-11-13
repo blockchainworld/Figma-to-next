@@ -23,7 +23,7 @@ const Register: React.FC<RegisterProps> = ({ onClose, onSwitchToLogin }) => {
     try {
       // 模擬註冊過程
       onSwitchToLogin();
-    } catch (err) {
+    } catch  {
       setError('註冊失敗，請稍後重試');
     }
   };
