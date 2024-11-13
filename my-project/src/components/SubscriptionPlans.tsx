@@ -80,29 +80,62 @@ const SubscriptionPlans: React.FC = () => {
           </div>
         </div>
 
-        {/* 连接线 - 调整连接点位置 */}
-        <div className="absolute top-16 left-0 w-full h-full">
-          {/* 左侧弧形连接线 */}
-          <div className="absolute left-[14%] top-4 w-[36%] h-[100px]
-            border-t-2 border-l-2 rounded-tl-[50px] border-white/30" />
+                 {/* 连接线部分添加响应式 */}
+          <div className="absolute top-16 left-0 w-full h-full">
+            {/* 左侧弧形连接线 - 添加响应式宽度和圆角 */}
+            <div className="absolute left-[14%] top-4 w-[36%] h-[100px]
+              max-lg:left-[12%] max-lg:w-[38%] 
+              max-md:left-[10%] max-md:w-[40%]
+              max-sm:left-[8%] max-sm:w-[42%]
+              border-t-2 border-l-2 rounded-tl-[50px] 
+              max-lg:rounded-tl-[40px] 
+              max-md:rounded-tl-[30px]
+              max-sm:rounded-tl-[20px]
+              border-white/30" />
 
-          {/* 右侧弧形连接线 */}
-          <div className="absolute right-[14%] top-4 w-[36%] h-[100px]
-            border-t-2 border-r-2 rounded-tr-[50px] border-white/30" />
+            {/* 右侧弧形连接线 - 添加响应式宽度和圆角 */}
+            <div className="absolute right-[14%] top-4 w-[36%] h-[100px]
+              max-lg:right-[12%] max-lg:w-[38%]
+              max-md:right-[10%] max-md:w-[40%]
+              max-sm:right-[8%] max-sm:w-[42%]
+              border-t-2 border-r-2 rounded-tr-[50px]
+              max-lg:rounded-tr-[40px]
+              max-md:rounded-tr-[30px]
+              max-sm:rounded-tr-[20px]
+              border-white/30" />
 
-          {/* 中间垂直连接线 */}
-          <div className="absolute left-1/2 -translate-x-1/2 top-4 w-[2px] h-[500px]
-            bg-gradient-to-b from-white via-white/50 to-white/30
-            shadow-[0_0_10px_rgba(255,255,255,0.3)]" />
+            {/* 中间垂直连接线 - 调整高度 */}
+            <div className="absolute left-1/2 -translate-x-1/2 top-4 w-[2px] 
+              h-[500px] 
+              max-lg:h-[400px] 
+              max-md:h-[350px]
+              max-sm:h-[300px]
+              bg-gradient-to-b from-white via-white/50 to-white/30
+              shadow-[0_0_10px_rgba(255,255,255,0.3)]" />
 
-          {/* 装饰性光点 */}
-          <div className="absolute left-[20%] top-[102px] w-2 h-2 bg-white rounded-full 
-            shadow-[0_0_10px_rgba(255,255,255,0.8)]" />
-          <div className="absolute right-[20%] top-[102px] w-2 h-2 bg-white rounded-full 
-            shadow-[0_0_10px_rgba(255,255,255,0.8)]" />
-          <div className="absolute left-1/2 -translate-x-1/2 bottom-0 w-2 h-2 bg-white rounded-full 
-            shadow-[0_0_10px_rgba(255,255,255,0.8)]" />
-        </div>
+            {/* 装饰性光点 - 调整位置 */}
+            <div className="absolute left-[20%] top-[102px] 
+              max-lg:left-[18%] 
+              max-md:left-[16%]
+              max-sm:left-[14%]
+              w-2 h-2 bg-white rounded-full 
+              shadow-[0_0_10px_rgba(255,255,255,0.8)]" />
+            
+            <div className="absolute right-[20%] top-[102px]
+              max-lg:right-[18%]
+              max-md:right-[16%]
+              max-sm:right-[14%]
+              w-2 h-2 bg-white rounded-full 
+              shadow-[0_0_10px_rgba(255,255,255,0.8)]" />
+            
+            <div className="absolute left-1/2 -translate-x-1/2 
+              bottom-0
+              max-lg:bottom-0
+              max-md:bottom-0
+              max-sm:bottom-0
+              w-2 h-2 bg-white rounded-full 
+              shadow-[0_0_10px_rgba(255,255,255,0.8)]" />
+          </div>
 
         {/* 卡片布局保持不变 */}
   <div className="grid grid-cols-3 gap-20 max-lg:gap-10 max-md:gap-5 max-sm:gap-2">
