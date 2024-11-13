@@ -22,7 +22,7 @@ const PlanCard: React.FC<PlanProps> = ({ price, duration, icon, position }) => (
     <div className="absolute -bottom-1 -left-1 w-2 h-2 bg-white/30 rounded-full" />
     
     {/* 图标 - 增大尺寸 */}
-    <div className="absolute -top-12">
+    <div className="absolute -top-12 max-lg:-top-10 max-md:-top-8 max-sm:-top-6">
       <img 
         src={icon} 
         className="w-16 h-16 max-lg:w-14 max-lg:h-14 max-md:w-12 max-md:h-12 max-sm:w-10 max-sm:h-10" 
@@ -69,42 +69,70 @@ const SubscriptionPlans: React.FC = () => {
 
       {/* 整体连接线布局容器 */}
       <div className="relative w-full">
-        {/* 中心图标 - 移除圆环，增大图标 */}
-        <div className="relative flex justify-center mb-24">
-          <div className="relative">
-            <img 
-              src="/layer.svg"
-              className="w-20 h-20 max-lg:w-16 max-lg:h-16 max-md:w-14 max-md:h-14 max-sm:w-12 max-sm:h-12"
-              alt=""
-            />
+       {/* 调整中心图标位置和间距 */}
+        <div className="relative flex justify-center mb-24 max-lg:mb-20 max-md:mb-16 max-sm:mb-12">
+            <div className="relative">
+              <img 
+                src="/layer.svg"
+                className="w-20 h-20 max-lg:w-16 max-lg:h-16 max-md:w-14 max-md:h-14 max-sm:w-12 max-sm:h-12"
+                alt=""
+              />
+            </div>
+        </div>
+
+        {/* 调整连接线布局 */}
+        <div className="absolute top-16 max-lg:top-14 max-md:top-12 max-sm:top-10 left-0 w-full h-full">
+            {/* 左侧弧形连接线 - 调整响应式位置和尺寸 */}
+            <div className="absolute left-[14%] top-4 w-[36%] h-[100px]
+              max-lg:left-[14%] max-lg:w-[36%] max-lg:h-[80px]
+              max-md:left-[15%] max-md:w-[36%] max-md:h-[60px]
+              max-sm:left-[16%] max-sm:w-[35%] max-sm:h-[40px]
+              border-t-2 border-l-2 rounded-tl-[50px] 
+              max-lg:rounded-tl-[40px] 
+              max-md:rounded-tl-[30px]
+              max-sm:rounded-tl-[20px]
+              border-white/30" />
+
+            {/* 右侧弧形连接线 - 调整响应式位置和尺寸 */}
+            <div className="absolute right-[14%] top-4 w-[36%] h-[100px]
+              max-lg:right-[14%] max-lg:w-[36%] max-lg:h-[80px]
+              max-md:right-[15%] max-md:w-[36%] max-md:h-[60px]
+              max-sm:right-[16%] max-sm:w-[35%] max-sm:h-[40px]
+              border-t-2 border-r-2 rounded-tr-[50px]
+              max-lg:rounded-tr-[40px]
+              max-md:rounded-tr-[30px]
+              max-sm:rounded-tr-[20px]
+              border-white/30" />
+
+            {/* 中间垂直连接线 - 调整高度 */}
+            <div className="absolute left-1/2 -translate-x-1/2 top-4 w-[2px] 
+              h-[500px] 
+              max-lg:h-[500px] 
+              max-md:h-[400px]
+              max-sm:h-[400px]
+              bg-gradient-to-b from-white via-white/50 to-white/30
+              shadow-[0_0_10px_rgba(255,255,255,0.3)]" />
+
+            {/* 装饰性光点 - 调整响应式位置 */}
+            <div className="absolute left-[20%] top-[102px] 
+              max-lg:top-[82px] max-lg:left-[18%]
+              max-md:top-[62px] max-md:left-[16%]
+              max-sm:top-[42px] max-sm:left-[14%]
+              w-2 h-2 bg-white rounded-full 
+              shadow-[0_0_10px_rgba(255,255,255,0.8)]" />
+            
+            <div className="absolute right-[20%] top-[102px]
+              max-lg:top-[82px] max-lg:right-[18%]
+              max-md:top-[62px] max-md:right-[16%]
+              max-sm:top-[42px] max-sm:right-[14%]
+              w-2 h-2 bg-white rounded-full 
+              shadow-[0_0_10px_rgba(255,255,255,0.8)]" />
+            
+            <div className="absolute left-1/2 -translate-x-1/2 bottom-0 w-2 h-2 bg-white rounded-full 
+              shadow-[0_0_10px_rgba(255,255,255,0.8)]" />
           </div>
-        </div>
 
-        {/* 连接线 - 调整连接点位置 */}
-        <div className="absolute top-16 left-0 w-full h-full">
-          {/* 左侧弧形连接线 */}
-          <div className="absolute left-[14%] top-4 w-[36%] h-[100px]
-            border-t-2 border-l-2 rounded-tl-[50px] border-white/30" />
-
-          {/* 右侧弧形连接线 */}
-          <div className="absolute right-[14%] top-4 w-[36%] h-[100px]
-            border-t-2 border-r-2 rounded-tr-[50px] border-white/30" />
-
-          {/* 中间垂直连接线 */}
-          <div className="absolute left-1/2 -translate-x-1/2 top-4 w-[2px] h-[500px]
-            bg-gradient-to-b from-white via-white/50 to-white/30
-            shadow-[0_0_10px_rgba(255,255,255,0.3)]" />
-
-          {/* 装饰性光点 */}
-          <div className="absolute left-[20%] top-[102px] w-2 h-2 bg-white rounded-full 
-            shadow-[0_0_10px_rgba(255,255,255,0.8)]" />
-          <div className="absolute right-[20%] top-[102px] w-2 h-2 bg-white rounded-full 
-            shadow-[0_0_10px_rgba(255,255,255,0.8)]" />
-          <div className="absolute left-1/2 -translate-x-1/2 bottom-0 w-2 h-2 bg-white rounded-full 
-            shadow-[0_0_10px_rgba(255,255,255,0.8)]" />
-        </div>
-
-        {/* 卡片布局保持不变 */}
+          {/* 调整卡片网格布局 */}
           <div className="grid grid-cols-3 gap-20 max-lg:gap-10 max-md:gap-5 max-sm:gap-2">
             <div className="flex justify-end max-md:justify-center">
               <PlanCard {...plans[0]} />
@@ -114,8 +142,8 @@ const SubscriptionPlans: React.FC = () => {
               <PlanCard {...plans[2]} />
             </div>
           </div>
-        
- <div className="flex justify-center mt-32 max-lg:mt-24 max-md:mt-20 max-sm:mt-16">
+
+        <div className="flex justify-center mt-32">
           <PlanCard {...plans[1]} />
         </div>
       </div>
