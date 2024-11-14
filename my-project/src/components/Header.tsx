@@ -15,7 +15,6 @@ const Header: React.FC = () => {
   };
 
   const navItems = [
-    { label: "股票指数", href: "#stock" , isExternal: false},
     { label: "智富匯基金", href: "#fund" , isExternal: false },
     { label: "關於我們", href: "#about" , isExternal: false},
     { label: "新聞", href: "#news" , isExternal: false},
