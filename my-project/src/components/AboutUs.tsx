@@ -79,14 +79,14 @@ const AboutUs: React.FC = () => {
                 data-layername="我们是一支充满热情的团队..." 
                 className="mt-10 max-lg:mt-8 max-md:mt-6 max-sm:mt-4 text-3xl max-lg:text-2xl max-md:text-xl max-sm:text-lg leading-10 max-lg:leading-9 max-md:leading-8 max-sm:leading-7"
               >
-                我们是一支充满热情的团队，致力于通过尖端的人工智能技术提供最佳的股票交易体验。
+                我們是一支充滿熱情的團隊，致力於通過尖端的人工智能技術提供最佳的股票交易體驗。
                 <br />
                 <br />
                 <strong className="text-4xl max-lg:text-3xl max-md:text-2xl max-sm:text-xl font-medium text-white">
-                  我们的使命
+                  我們的使命
                 </strong>
                 <br />
-                我们的使命是通过智能工具和洞察力为交易者提供支持，以便他们在股票市场做出明智的决策。我们努力简化复杂的金融数据，并为各个层次的交易者提供易于使用的界面。
+                我們的使命是通過智能工具和洞察力為交易者提供支持，以便他們在股票市場做出明智的決策。我們努力簡化複雜的金融數據，并爲各個層次的交易者提供易於使用的界面。
               </p>
             </div>
           </div>
