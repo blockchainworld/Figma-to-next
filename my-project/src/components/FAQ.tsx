@@ -15,11 +15,12 @@ const FAQItem: React.FC<FAQItemProps> = ({ question }) => (
   </div>
 );
 
+
 const FAQ: React.FC = () => {
   const faqItems: FAQItemProps[] = [
-    { question: "最近影响特斯拉（TSLA）股票表现的关键因素是什么？" },
-    { question: "中国股市的FOMO（害怕错过）情绪能否持续下去？" },
-    { question: "纳斯达克最近有哪些趋势和发展？" },
+    { question: "最近影響特斯拉（TSLA）股票表現的關鍵因素是什麽？" },
+    { question: "中國股市的FOMO (害怕錯過) 情緒能否持續下去？" },
+    { question: "納斯達克最近有哪些趨勢和發展？" },
   ];
 
   return (
