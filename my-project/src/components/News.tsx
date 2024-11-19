@@ -124,7 +124,7 @@ const News: React.FC = () => {
       <div className="py-12 relative z-10">
         <h2
       data-layername="最新新闻"
-      className="text-6xl max-lg:text-5xl max-md:text-4xl max-sm:text-3xl font-noto-sans font-medium bg-gradient-to-b from-white/90 via-white/70 to-white/40 bg-clip-text text-transparent"
+      className="mt-12 max-md:mt-8 max-sm:mt-20 text-6xl max-lg:text-5xl max-md:text-4xl max-sm:text-3xl font-noto-sans font-medium bg-gradient-to-b from-white/90 via-white/70 to-white/40 bg-clip-text text-transparent"
       >
       最新新聞
        </h2>
