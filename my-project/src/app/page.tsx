@@ -15,7 +15,7 @@ import Footer from "@/components/Footer";
 
 const LandingPage: React.FC = () => {
   return (
-    <main className="flex overflow-hidden flex-col items-center pb-20 bg-[linear-gradient(to_bottom_right,#AED2FD_0%,#4D3589_46%_bottom_right_/_50%_50%_no-repeat,linear-gradient(to_bottom_left,#AED2FD_0%,#4D3589_46%)_bottom_left_/_50%_50%_no-repeat,linear-gradient(to_top_left,#AED2FD_0%,#4D3589_46%)_top_left_/_50%_50%_no-repeat,linear-gradient(to_top_right,#AED2FD_0%,#4D3589_46%)_top_right_/_50%_50%_no-repeat)]">
+    <main className="flex overflow-hidden flex-col items-center bg-[linear-gradient(to_bottom_right,#AED2FD_0%,#4D3589_46%_bottom_right_/_50%_50%_no-repeat,linear-gradient(to_bottom_left,#AED2FD_0%,#4D3589_46%)_bottom_left_/_50%_50%_no-repeat,linear-gradient(to_top_left,#AED2FD_0%,#4D3589_46%)_top_left_/_50%_50%_no-repeat,linear-gradient(to_top_right,#AED2FD_0%,#4D3589_46%)_top_right_/_50%_50%_no-repeat)]">
       <Header />
       <Hero />
       <StockIndex />
