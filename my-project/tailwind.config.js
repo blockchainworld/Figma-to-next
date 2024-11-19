@@ -12,6 +12,11 @@ module.exports = {
         marcellus: ['Marcellus', 'serif'],
         'noto-sans': ['"Noto Sans HK"', 'sans-serif'],
       },
+      screens: {
+        'xs': '470px',  // 或者其他你需要的尺寸
+        'xxs': '404px',
+        'tiny': '375px',
+      }
     },
   },
   plugins: [],
