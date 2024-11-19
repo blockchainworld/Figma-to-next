@@ -103,7 +103,7 @@ const FundCardComponent: React.FC<{
 
   return (
     <motion.div
-  className="absolute left-[40%] top-1/2 max-lg:left-[35%] max-md:top-[30%] md:left-[39%] max-sm:left-[30%] " // 添加 max-md:top-[X%] 让移动端卡片位置上移
+  className="absolute left-[40%] top-1/2 max-lg:left-[35%] max-md:top-[30%] md:left-[39%] max-sm:left-[28%] max-xs:left-[20%] max-xxs:left-[18%]  max-tiny:left-[16%]" // 添加 max-md:top-[X%] 让移动端卡片位置上移
   animate={{
     x,
     z,
