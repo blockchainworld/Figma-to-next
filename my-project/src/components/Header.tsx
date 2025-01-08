@@ -3,12 +3,14 @@ import React, { useState } from "react";
 import { useAuth } from '../context/AuthContext';
 import Login from './Login';
 import Register from './Register';
+import Chat from './chat';
 
 const Header: React.FC = () => {
   const { isAuthenticated, logout } = useAuth();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [showLogin, setShowLogin] = useState(false);
   const [showRegister, setShowRegister] = useState(false);
+  const [showChat, setShowChat] = useState(false); // 添加新状态
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -25,8 +27,8 @@ const Header: React.FC = () => {
     // 处理导航点击
     const handleNavClick = (item: typeof navItems[0]) => {
       if (item.isExternal) {
-        if (!isAuthenticated && item.href === "https://tradingwithai.org/zh") {
-          setShowLogin(true);
+        if (item.href === "https://tradingwithai.org/zh") {
+          setShowChat(true); // 直接显示聊天框
           return;
         }
         window.open(item.href, '_blank', 'noopener,noreferrer');
@@ -169,6 +171,10 @@ const Header: React.FC = () => {
         }}
       />
     )}
+     {/* 添加Chat组件 */}
+     {showChat && (
+        <Chat onClose={() => setShowChat(false)} />
+      )}
     </>
   );
 };

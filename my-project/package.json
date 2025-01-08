@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@langchain/langgraph-sdk": "^0.0.32",
     "framer-motion": "^11.11.11",
     "next": "15.0.2",
     "react": "19.0.0-rc-02c0e824-20241028",
